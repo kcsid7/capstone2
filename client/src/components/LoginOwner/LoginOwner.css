@@ -1,0 +1,40 @@
+.LoginOwner-Form-Field {
+    margin: 0.8rem auto;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    /* border: 2px solid red; */
+}
+
+.LoginOwner-Form-Field input {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    /* border: 2px solid blue; */
+
+}
+
+.LoginOwner-Form {
+    margin: 1rem 0;
+}
+
+.LoginOwner-Form-Field label {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.LoginOwner {
+    padding: 2rem 0;
+    background-color: rgba(46, 138, 86, 0.8);
+    box-shadow: 10px 10px 15px seagreen;
+    border-radius: 5%;
+    color: white;
+    width: 40%;
+    margin: 0 auto;
+}
+
+
+.LoginOwner-Customer-Link {
+    color: white;
+}

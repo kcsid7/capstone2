@@ -1,0 +1,30 @@
+
+
+/* .NewMenuItemForm {
+
+    
+} */
+
+
+.NewMenuItemForm-Input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.NewMenuItemForm-Input input{
+    width: 100%;
+}
+
+.NewMenuItemForm-Input textarea {
+    width: 100%;
+}
+
+.NewMenuItemForm-AddBtn {
+    margin: 1rem 1rem;
+    font-size: 1.2rem;
+    padding: 0.3rem 1rem;
+}
+

@@ -1,0 +1,69 @@
+.OrderDetails {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 5rem;
+    background-color: rgba(0, 0, 128, 0.80);
+    color: gainsboro;
+    border-radius: 5%;
+    margin: 2rem 0;
+}
+
+
+.OrderDetails-Header {
+    /* background-color: seashell; */
+    box-shadow: 5px 5px 5px darkblue;
+
+}
+
+
+.OrderDetails-Body {
+    /* background-color: rgba(135, 207, 235, 0.53); */
+    justify-content: space-around;
+    padding: 2rem 0;
+
+}
+
+.OrderDetails-Body-Customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px darkblue;
+    margin: 1rem 1rem;
+
+}
+
+.OrderDetails-Body-Items {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.OrderDetails-Body-Restaurant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px darkblue;
+    margin: 1rem 1rem;
+
+}
+
+.OrderDetails-OrderItem {
+    box-shadow: 5px 5px 5px darkblue;
+    margin: 1rem 0;
+    padding: 1rem;
+
+}
+
+.OrderDetails-TotalPrice {
+    box-shadow: 5px 5px 5px darkblue;
+    padding: 1.5rem;
+}
+
+.WhiteFont {
+    color: white;
+}

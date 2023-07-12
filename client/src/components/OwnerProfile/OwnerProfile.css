@@ -1,0 +1,39 @@
+
+
+
+
+.OwnerProfile-Restaurants {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.OwnerProfile-Nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.7rem 0;
+    padding: 0.9rem 0;
+    /* box-shadow: 3px 3px 3px darkslategray; */
+}
+
+.OwnerProfile-Nav button {
+    padding: 0.5rem;
+    margin: 0 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    box-shadow: 5px 5px 5px navy;
+    background-color: white;
+    color: navy;
+}
+
+.OwnerProfile-Nav h3 {
+    padding: 0.5rem;
+}
+
+.OwnerProfile-Body {
+    margin: 2.5rem 0 0 0;
+}
+

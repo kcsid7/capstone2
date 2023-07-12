@@ -1,0 +1,17 @@
+/* 
+
+ */
+
+.MenuList {
+    margin: 2rem auto;
+    box-shadow: -3px -3px 3px darkgray, 3px 3px 3px darkgray;
+    padding: 1rem 0;
+}
+ 
+
+.MenuList-Menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}

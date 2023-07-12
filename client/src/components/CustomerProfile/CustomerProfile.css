@@ -1,0 +1,9 @@
+.CustomerProfile-OrderHistoryList {
+    list-style: none;
+}
+
+.CustomerProfile {
+    display: flex;
+    flex-direction: column;
+
+}

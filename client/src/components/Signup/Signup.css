@@ -1,0 +1,26 @@
+.Signup-Form-Field {
+    margin: 0.8rem auto;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    /* border: 2px solid red; */
+}
+
+.Signup-Form-Field input {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    /* border: 2px solid blue; */
+
+}
+
+.Signup-Form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.Signup-Form-Field label {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 400;
+}

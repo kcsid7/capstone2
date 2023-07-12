@@ -1,0 +1,48 @@
+.Cart {
+    background-color: snow;
+    box-shadow: -2px -2px 3px gray, 2px 2px 2px gray;
+    padding: 1rem;
+}
+ 
+.Cart-List {
+    padding: 1rem;
+    
+}
+
+.Cart-Total {
+    box-shadow: 5px 5px 5px green, -2px -2px 2px green;
+    margin: 0 auto;
+    width: 33%;
+    padding: 0.5rem 0;
+}
+
+.Cart-List ul {
+    list-style: none;
+}
+
+/* 
+
+.Cart {
+    position: fixed;
+    width: 20vw;
+    background-color: rgba(250, 235, 215, 0.200);
+}
+
+
+.Cart-List {
+    border: 2px solid black;
+    margin: 0 auto;
+    padding: 0 0 1rem 0;
+}
+
+
+
+.Cart-Order-Toggle-Btn {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: rgb(54, 129, 221);
+    border: 2px solid rgb(0, 2, 128);
+    box-shadow: 5px 5px 5px rgb(26, 7, 112);
+    color: white;
+} */

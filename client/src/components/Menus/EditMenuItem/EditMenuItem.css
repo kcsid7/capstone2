@@ -1,0 +1,35 @@
+.EditMenuItem {
+    margin: 1rem 3rem;
+    width: 100%;
+    min-height: 175px;
+    padding: 1rem 2rem;
+    box-shadow: -2px -2px 2px darkslategray, 2px 2px 2px darkslategray;
+}
+ 
+.EditMenuItem-Image {
+    /* margin-right: auto; */
+    display: flex;
+    justify-content: center;
+
+}
+
+.EditMenuItem-Image-Img {
+    height: 150px;
+    width: 150px;
+    align-self: center;
+    box-shadow: 7px 7px 7px darkslategrey;
+}
+ 
+.EditMenuItem-Buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.EditMenuItem-Details {
+    width: 50%;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

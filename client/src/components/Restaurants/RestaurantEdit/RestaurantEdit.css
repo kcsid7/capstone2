@@ -1,0 +1,63 @@
+.RestaruantEdit-Contents {
+    display: flex;
+    flex-direction: column;
+    /* border: 4px dotted purple; */
+}
+
+.RestaruantEdit-NewItem {
+    margin: 4rem auto 2rem;
+    padding: 2rem 0;
+    box-shadow: -3px -3px 3px darkslategray, 3px 3px 3px darkslategray;
+
+    border-radius: 25%;
+}
+
+.RestaruantEdit-Menu {
+    /* width: 10%; */
+    margin: 0 auto;
+}
+
+.RestaruantEdit-Admin-Nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.7rem 0;
+    padding: 0.9rem 0;
+    box-shadow: 3px 3px 3px darkslategray;
+}
+
+.Delete-Bg {
+    background-color: lightcoral;
+}
+
+.RestaruantEdit-Admin-Nav button {
+    padding: 0.5rem;
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    box-shadow: 5px 5px 5px black;
+}
+
+.RestaruantEdit-Admin-Nav h5 {
+    /* border: 2px solid blue; */
+    padding: 0.5rem;
+}
+
+.deleteBtn {
+    background-color: crimson;
+    color: white;
+}
+
+.greenBtn {
+    background-color: darkgreen;
+    color: white;
+}
+
+.defaultBtn {
+    background-color: antiquewhite;
+}
+
+.editBtn {
+    background-color: lightskyblue;
+}

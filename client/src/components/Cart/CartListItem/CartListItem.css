@@ -1,0 +1,106 @@
+
+.Cart-List-Items {
+    margin-bottom: 1rem;
+    box-shadow: -2px -2px 2px black, 2px 2px 2px black;
+    padding: 0.1rem 1rem;
+}
+
+.Cart-List-Items-Head {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+
+}
+
+.Cart-List-Items-Notes {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.Cart-List-Items-Notes textarea {
+    margin: 0 auto 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.Cart-Item-Notes-Save {
+    margin: 0.1rem auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.Cart-Item-Edit {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+.Cart-Item-Info {
+    margin: 0 auto;
+}
+
+
+.Cart-Item-Info-Span p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+
+
+
+/* .Cart-List-Items {
+    box-shadow: 2px 2px 2px black, -1px -1px 1px black;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.Cart-List-Items-Head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Cart-List-Items-Head p {
+    padding: 0.3rem;
+}
+
+
+.Cart-List-Items-Notes {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+
+.Cart-List-Items-Notes textarea {
+    margin: 0 1rem;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.Cart-List-Items-Notes p {
+    padding: 0.2rem 0.7rem;
+    margin: 0 1rem;
+    border: 2px solid black;
+    width: 80%;
+    text-align: start;
+}
+
+.Cart-Item-Notes-Save {
+    align-self: center;
+    font-size: 2rem;
+    color: white;
+    background-color: black;
+    padding: 0.2rem;
+}
+
+.Cart-Item-Edit {
+    align-self: center;
+    color: white;
+    background-color: black;
+    padding: 0.2rem;
+}
+
+.Edit-Mode {
+    background-color: rgba(150, 250, 100, 0.75);
+} */
