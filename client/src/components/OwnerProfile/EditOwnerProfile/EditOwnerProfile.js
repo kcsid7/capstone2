@@ -8,6 +8,7 @@ import useErrorState from "../../../hooks/useErrorState";
 import AlertBanner from "../../utilComponents/AlertBanner/AlertBanner";
 
 import UserContext from "../../../context/UserContext";
+import AppContext from "../../../context/AppContext";
 
 
 import "./EditOwnerProfile.css";
@@ -15,6 +16,7 @@ import "./EditOwnerProfile.css";
 function EditOwnerProfile({owner, updateOwner, cancel}) {
 
     const {localUser} = useContext(UserContext);
+    const {setError:appSetError} = useContext(AppContext)
 
     const initialData = {
         firstName: owner.firstName,
@@ -50,6 +52,7 @@ function EditOwnerProfile({owner, updateOwner, cancel}) {
             e.preventDefault();
             console.log(formData);
             updateOwner(localUser, formData);
+            appSetError({message: "Owner Profile Updated!", type: "success"});
             cancel();
         } catch(e) {
             // resetForm(s => initialData);
@@ -64,7 +67,7 @@ function EditOwnerProfile({owner, updateOwner, cancel}) {
                 errorMessage(error)
             }
             <form className="EditOwnerProfile-Form" onSubmit={handleSubmit}>
-                <div className="OwnerSignup-Form-Field">
+                <div className="EditOwnerProfile-Form-Field">
                     <label htmlFor="firstName">First Name</label>
                     <input required type="text" name="firstName" id="firstName" value={formData.firstName} onChange={updateForm}/>
                 </div>

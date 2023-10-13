@@ -1,0 +1,43 @@
+.EditCustomerProfile-Form-Field {
+    margin: 0.8rem auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    /* border: 2px solid red; */
+}
+
+.EditCustomerProfile-Form-Field input {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    /* border: 2px solid blue; */
+
+}
+
+.EditCustomerProfile-Form {
+    margin: 1rem 0;
+}
+
+.EditCustomerProfile-Form button {
+    margin: 0.5rem 1rem;
+    padding: 0.7rem;
+    font-weight: 500;
+}
+
+.EditCustomerProfile-Form-Field label {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.EditCustomerProfile {
+    padding: 2rem 0;
+    background-color: rgba(0, 0, 128, 0.737);
+    box-shadow: 10px 10px 15px darkblue;
+    border-radius: 5%;
+    color: white;
+}
+
+.EditCustomerProfile-Customer-Link {
+    color: white;
+}

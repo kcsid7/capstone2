@@ -52,6 +52,7 @@ class Restaurant {
 
     // Update Restaurant Info
     static async updateRestaurant(data, resId) {
+        try {
         const {cols, values} = sqlPartialUpdate(data, {
             streetAddress: "street_address"
         });
@@ -69,6 +70,10 @@ class Restaurant {
         if (!restaurant) throw new NotFoundError();
 
         return restaurant
+        } catch (e) {
+
+        }
+
     }
 
 
@@ -79,7 +84,16 @@ class Restaurant {
         try {
             // add new restaurant to the restaurants table
 
-            if (!dataObj.owner) throw new BadRequestError();
+            if (!dataObj.owner) throw new BadRequestError("Need an owner");
+
+            // Check if owner exists
+
+            const ownerCheck = await db.query(
+                `
+                SELECT * FROM owners WHERE username = $1
+                `, [dataObj.owner]
+            );
+            if (!ownerCheck.rows[0]) throw new BadRequestError("Owner not found!");
 
             const newRes = await db.query(
                 `INSERT INTO restaurants 
@@ -111,8 +125,7 @@ class Restaurant {
 
             return {newRestaurant, newResLink}
         } catch(e) {
-            console.log(e);
-            throw new BadRequestError();
+            throw new BadRequestError(e.message);
         }
 
     }

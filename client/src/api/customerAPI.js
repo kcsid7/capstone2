@@ -1,4 +1,5 @@
 import axios from "axios";
+// const axios = require("axios"); customerAPI
 
 const BASE = "http://localhost:5000";
 
@@ -71,6 +72,23 @@ class customerAPI {
             return result.data;
         } catch (e) {
             console.log("customerAPI - getCustomerOrders", e);
+            throw e
+        }
+    }
+
+
+    // Update Customer
+    static async updateCustomer(username, data) {
+        try {
+            const result = await axios({
+                method: 'PATCH',
+                url: `${BASE}/customer/${username}`,
+                headers: { authtoken: customerAPI.token },
+                data: data 
+            })
+            return result.data;
+        } catch(e) {
+            console.log("customerAPI - updateCustomer", e);
             throw e
         }
     }

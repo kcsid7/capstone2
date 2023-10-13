@@ -7,13 +7,15 @@ const { NotFoundError, ExpressError } = require("../expressError.js");
 
 class Order {
 
-    constructor(restaurantId, restaurantName, orderNumber, orderDate, totalPrice, customerId, orderTime) {
+    constructor(restaurantId, restaurantName, orderNumber, orderDate, totalPrice, customerId, orderTime, tip, tax) {
         this.restaurantId = restaurantId,
         this.restaurantName = restaurantName,
         this.orderNumber = orderNumber,
         this.orderDate = orderDate,
         this.orderTime = orderTime,
         this.totalPrice = totalPrice,
+        this.tip = tip,
+        this.tax = tax,
         this.customer = {
             customerId
         },
@@ -29,12 +31,12 @@ class Order {
     static async createOrder(orderObj, restaurantId) { 
         const resOrder = await db.query(`
             INSERT INTO orders (order_number, order_date, total_price, customer_id, restaurant_id, 
-                                customer_name, customer_email, customer_phone, customer_full_address, order_time) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                                customer_name, customer_email, customer_phone, customer_full_address, order_time, tip, tax) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
             RETURNING order_number, restaurant_id, customer_name, order_date, order_time
             `, [orderObj.orderNumber, orderObj.orderDate, orderObj.totalPrice, orderObj.customerId, restaurantId,
                 orderObj.customerName, orderObj.customerEmail, orderObj.customerPhone, orderObj.customerAddress,
-                orderObj.orderTime]);
+                orderObj.orderTime, orderObj.tip, orderObj.tax]);
 
         const menuItemsValues =  orderObj.items.map( i => [orderObj.orderNumber, i.itemId, 
                                                             i.quantity, i.itemName, i.itemDescription,
@@ -54,7 +56,7 @@ class Order {
         const result = await db.query(`
         SELECT om.id AS orderId, om.quantity, om.item_name, om.item_id,
                 om.item_price, om.item_total, om.item_description, om.notes,
-                o.order_date AS orderdate, o.order_time as ordertime, o.total_price AS totalprice, 
+                o.order_date AS orderdate, o.order_time as ordertime, o.total_price AS totalprice, o.tip, o.tax,
                 o.order_number AS ordernumber, o.restaurant_id AS restaurantId, o.customer_id AS customerId,
                 o.customer_name AS customer_name, o.customer_phone AS phone, o.customer_email AS email,
                 o.customer_full_address AS address, r.name AS restaurant_name
@@ -69,6 +71,8 @@ class Order {
         const { orderdate, 
                 ordertime,
                 totalprice, 
+                tip,
+                tax,
                 customerid, 
                 restaurantid, 
                 restaurant_name,
@@ -78,7 +82,8 @@ class Order {
                 email,
                 address } = result.rows[0];
 
-        const order = new Order(restaurantid, restaurant_name, ordernumber, new Date(orderdate).toLocaleDateString(), totalprice, customerid, ordertime);
+        const order = new Order(restaurantid, restaurant_name, ordernumber, 
+                        new Date(orderdate).toLocaleDateString(), totalprice, customerid, ordertime, tip, tax);
 
         if ((result.rows[0].orderid !== null)) {
             order.items = result.rows.map( o => ({
@@ -123,11 +128,11 @@ class Order {
         const updatedOrder = await db.query(`
             UPDATE orders 
             SET order_date = $1, total_price = $2, customer_id = $3, customer_name = $4, 
-                customer_phone = $5, customer_email = $6, customer_full_address = $7, order_time = $8
-            WHERE order_number = $9
+                customer_phone = $5, customer_email = $6, customer_full_address = $7, order_time = $8, tip = $9, tax = $10
+            WHERE order_number = $11
             RETURNING *
         `, [newOrder.orderDate, newOrder.totalPrice, newOrder.customerId, newOrder.customerName, 
-            newOrder.customerPhone, newOrder.customerEmail, newOrder.customerAddress, newOrder.orderTime, 
+            newOrder.customerPhone, newOrder.customerEmail, newOrder.customerAddress, newOrder.orderTime, newOrder.tip, newOrder.tax, 
             this.orderNumber])
 
         // Update values in the orders_menuitems table
@@ -172,11 +177,10 @@ class Order {
             }
         });
 
-        console.log("THIS");
-        console.log(this);
-
-        console.log("Updated Order");
-        console.log(updatedOrder.rows[0]);
+        return ({
+            message: "Order updated!",
+            orderNumber: this.orderNumber
+        })
     }
 
 

@@ -1,8 +1,16 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom'; 
+import { TextEncoder, TextDecoder} from "util";
+
+
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
+test('renders App properly', () => {
+  render(<BrowserRouter><App /></BrowserRouter>);
 });
+
+
+

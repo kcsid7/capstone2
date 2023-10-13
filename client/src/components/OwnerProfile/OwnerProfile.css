@@ -1,7 +1,5 @@
 
 
-
-
 .OwnerProfile-Restaurants {
     margin: 0 auto;
     display: flex;
@@ -27,6 +25,11 @@
     box-shadow: 5px 5px 5px navy;
     background-color: white;
     color: navy;
+}
+
+.OwnerProfile-NavButton:hover {
+    transform: scale(1.2) translate(0, -5px);
+    cursor: pointer;
 }
 
 .OwnerProfile-Nav h3 {

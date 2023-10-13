@@ -93,8 +93,8 @@ function OwnerProfile() {
             case 'show-restaurant-list':
                 return (
                     <>
-                        <button className="" onClick={() => setNav(s => 'add-new-restaurant')}>Add New Restaurant</button>
-                        <button className="" onClick={() => setNav(s => 'default')}>Back</button>
+                        <button className="OwnerProfile-NavButton" onClick={() => setNav(s => 'add-new-restaurant')}>Add New Restaurant</button>
+                        <button className="OwnerProfile-NavButton" onClick={() => setNav(s => 'default')}>Back</button>
                     </>
                 )
 
@@ -108,9 +108,9 @@ function OwnerProfile() {
             default:
                 return (
                     <>
-                        <button className="" onClick={() => setNav(s => 'add-new-restaurant')}>Add New Restaurant</button>
-                        <button className="" onClick={() => setNav(s => 'show-restaurant-list')}>Show Restaurants</button>
-                        <button className="" onClick={() => setNav(s => 'edit-profile')}>Edit Profile</button>
+                        <button className="OwnerProfile-NavButton" onClick={() => setNav(s => 'add-new-restaurant')}>Add New Restaurant</button>
+                        <button className="OwnerProfile-NavButton" onClick={() => setNav(s => 'show-restaurant-list')}>Show Restaurants</button>
+                        <button className="OwnerProfile-NavButton" onClick={() => setNav(s => 'edit-profile')}>Edit Profile</button>
                     </>
                 )
         }

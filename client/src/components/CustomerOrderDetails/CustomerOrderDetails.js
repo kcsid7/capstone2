@@ -11,55 +11,20 @@ import orderAPI from "../../api/orderAPI";
 import timeFormatter from "../../helpers/timeFormatter";
 import currencyFormatter from "../../helpers/currencyFormatter";
 
-import "./OrderDetails.css";
+import "./CustomerOrderDetails.css";
 
 
-function OrderDetails() {
+function CustomerOrderDetails({order, backToTable}) {
 
-    const {oNum} = useParams();
-    
-    const navigate = useNavigate();
 
     const { localUser, token } = useContext(UserContext);
     const { setError } = useContext(AppContext);
-
-    const [order, setOrder ] = useState(null)
-
-
-
-    useEffect( () => {
-
-        if (!(token && localUser)) {
-            setError({message: "Unauthorized", type:"failure"});
-            navigate("/");
-            return
-        }
-
-        async function getOrder(num) {
-            console.log("getOrder")
-            if (!order) {
-                try {
-                    const orderResp = await orderAPI.getOrder(num);
-                    setOrder(orderResp);
-                } catch (e) {
-                    console.log(e);
-                    return {
-                        error: "Error"
-                    }
-                }
-            }
-        }
-        getOrder(oNum);
-    
-    }, [])
 
 
     const orderDetailHTML = () => {
 
         const { orderNumber, orderDate, orderTime, totalPrice,
-                customer, items, restaurantId, restaurantName} = order;
-
-        console.log(order);
+                customer, items, restaurantId, restaurantName, tax, tip} = order;
 
         function orderItemsHTML(item, key) {
             return (
@@ -77,8 +42,8 @@ function OrderDetails() {
         return (
             <div className="OrderDetails container">
                 <div className="OrderDetails-Header">
-                    <h2 className="WhiteFont">Order Details</h2>
-                    <h6>{orderNumber}</h6>
+                    <h5 className="OrderDetails-BackToTable" onClick={backToTable}>Back</h5>
+                    <h3>{orderNumber}</h3>
                     <h6>{orderDate} - {timeFormatter(orderTime)}</h6>
                 </div>
                 <div className="OrderDetails-Body row">
@@ -99,8 +64,15 @@ function OrderDetails() {
                         {
                             items.map((d, i) => orderItemsHTML(d, i))
                         }
+                    <h5>{currencyFormatter(totalPrice - tax - tip)}</h5>
                     </ul>
-                    <h3 className="OrderDetails-TotalPrice">{currencyFormatter(totalPrice)}</h3>
+                    <div className="d-flex OrderDetails-PriceGroup">
+                        <div>
+                            <h5>Tax : {currencyFormatter(tax)}</h5>
+                            <h5>Tip : {currencyFormatter(tip)}</h5>
+                        </div>
+                        <h3 className="OrderDetails-TotalPrice">{currencyFormatter(totalPrice)}</h3>
+                    </div>
                 </div>
             </div>
         )
@@ -111,4 +83,4 @@ function OrderDetails() {
     )
 }
 
-export default OrderDetails;
+export default CustomerOrderDetails;

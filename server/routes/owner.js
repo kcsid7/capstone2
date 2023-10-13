@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 // Middlewares
 const { createOwnerToken } = require("../helpers/createOwnerToken.js");
 const { checkOwner } = require("../middlewares/checkOwner.js");
+const { checkCorrectUser } = require("../middlewares/checkCorrectUser.js");
 
 
 const Owner = require("../models/owner.js");
@@ -47,7 +48,7 @@ router.post("/login", async (req, res, next) => {
 // USER or ADMIN ONLY
 // GET detailed info about an owner by their username
 // GET: /owner/:username
-router.get("/:username", checkOwner, async (req, res, next) => {
+router.get("/:username", checkOwner, checkCorrectUser, async (req, res, next) => {
     try {
         const owner = await Owner.getDetailedInfo(req.params.username);
         return res.status(200).json(owner);
@@ -59,7 +60,7 @@ router.get("/:username", checkOwner, async (req, res, next) => {
 
 // PATCH owner (Update)
 // PATCH: /owner/:username
-router.patch("/:username", async (req, res, next) => {
+router.patch("/:username", checkOwner, checkCorrectUser, async (req, res, next) => {
     try {
         console.log("PATCH /owner/")
         const updatedOwner = await Owner.updateOwner(req.body, req.params.username)

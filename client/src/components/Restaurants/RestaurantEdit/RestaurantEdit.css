@@ -4,11 +4,28 @@
     /* border: 4px dotted purple; */
 }
 
+.RestaruantEdit-Orders {
+    margin: 1rem auto 2rem;
+
+}
+
+.RestaurantEdit-NavButton:hover {
+    transform: scale(1.15) translate(0, -5px);
+    cursor: pointer;
+}
+
+.RestaruantEdit-Header-Details {
+    box-shadow: -3px -3px 3px rgba(128, 0, 0, 0.5), 3px 3px 3px maroon;
+    width: 60%;
+    margin: 1rem auto;
+    padding: 0.7rem;
+    
+}
+
 .RestaruantEdit-NewItem {
-    margin: 4rem auto 2rem;
+    margin: 0 auto 2rem;
     padding: 2rem 0;
     box-shadow: -3px -3px 3px darkslategray, 3px 3px 3px darkslategray;
-
     border-radius: 25%;
 }
 
@@ -23,7 +40,6 @@
     justify-content: center;
     margin: 0.7rem 0;
     padding: 0.9rem 0;
-    box-shadow: 3px 3px 3px darkslategray;
 }
 
 .Delete-Bg {

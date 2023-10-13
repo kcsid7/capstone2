@@ -4,16 +4,19 @@ const express = require("express");
 
 const Restaurant = require("../models/restaurant.js");
 const Order = require("../models/order.js");
+
+const {checkForUser} = require("../middlewares/checkForUser.js");
+const {checkOwner} = require("../middlewares/checkOwner.js");
  
 
 const router = new express.Router();
 
 // Get Order Details
 // GET: /:orderNumber 
-router.get("/:oNum", async (req, res, next) => {
+router.get("/:oNum", checkForUser, async (req, res, next) => {
     try {
         const order = await Order.getOrder(req.params.oNum);
-        return res.status(201).json(order);
+        return res.status(200).json(order);
     } catch(e) {
         return next(e);
     }
@@ -21,11 +24,11 @@ router.get("/:oNum", async (req, res, next) => {
 
 // Delete Order
 // DELETE: /:orderNumber
-router.delete("/:oNum", async (req, res, next) => {
+router.delete("/:oNum", checkOwner, async (req, res, next) => {
     try {
         const order = await Order.getOrder(req.params.oNum);
         const removed = await order.deleteOrder();
-        return res.json(removed);
+        return res.status(200).json(removed);
     } catch(e) {
         return next(e);
     }
@@ -46,7 +49,7 @@ Patch Object: {
 }
 */
 
-router.patch("/:oNum", async (req, res, next) => {
+router.patch("/:oNum", checkOwner, async (req, res, next) => {
     try {
         const order = await Order.getOrder(req.params.oNum);
         // order.orderDate = req.body.orderDate;
@@ -54,7 +57,7 @@ router.patch("/:oNum", async (req, res, next) => {
         // order.customer.customerId = req.body.customerId;
         // order.newItems = req.body.items;
         await order.updateOrder(req.body);
-        return res.json({message: `Order ${req.params.oNum} Updated!`, orderNumber: req.params.oNum});
+        return res.status(201).json({message: `Order ${req.params.oNum} Updated!`, orderNumber: req.params.oNum});
     } catch(e) {
         return next(e);
     }

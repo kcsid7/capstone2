@@ -1,0 +1,25 @@
+.FoodSearch-MenuItems {
+    margin: 2.5rem auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FoodSearch-Form {
+    margin: 2rem auto;
+}
+
+.FoodSearch-Form input {
+    text-align: center;
+    width: 50%;
+}
+
+.FoodSearch-Form-Search-Button {
+    margin: 0 1rem;
+}
+
+.FoodSearch-Form-Search-Button:hover {
+    transform: scale(1.12);
+    cursor: pointer;
+}

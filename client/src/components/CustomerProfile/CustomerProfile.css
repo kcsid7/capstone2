@@ -7,3 +7,23 @@
     flex-direction: column;
 
 }
+
+.Customer-Profile-Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Customer-Profile-Header button {
+    margin: 0 1rem;
+    padding: 0.3rem 1rem;
+    box-shadow: 5px 5px 5px black;
+    background-color: darkgreen;
+    color: white;
+    font-weight: 600;
+}
+
+.Customer-Profile-Header button:hover {
+    transform: scale(1.2) translate(0, -5px);
+    cursor: pointer;
+}

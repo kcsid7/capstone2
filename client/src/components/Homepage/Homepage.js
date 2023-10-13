@@ -1,10 +1,11 @@
 import React, { useEffect, useContext } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Homepage.css"
 
 import RestaurantList from "../Restaurants/RestaurantList/RestaurantList";
+import FoodSearch from "../FoodSearch/FoodSearch";
 
 import UserContext from "../../context/UserContext";
 
@@ -19,9 +20,10 @@ function Homepage() {
     }, [])
 
     return (
-        <div>
-            <h1>Home</h1>
-            <RestaurantList />
+        <div className="HomePage">
+            {/* <RestaurantList /> */}
+            <FoodSearch />
+            <h4 className="HomePage-AllRestaurants-Link"><Link to="/res">See all restaurants</Link></h4>
         </div>
     )
 }

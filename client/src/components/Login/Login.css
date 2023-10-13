@@ -2,20 +2,19 @@
     margin: 0.8rem auto;
     display: flex;
     flex-direction: column;
-    width: 65%;
+    /* width: 65%; */
     /* border: 2px solid red; */
 }
 
 .Login-Form-Field input {
     text-align: center;
-    width: 70%;
     margin: 0 auto;
     /* border: 2px solid blue; */
 
 }
 
 .Login-Form {
-    width: 50%;
+    /* width: 50%; */
     margin: 1rem auto;
 }
 

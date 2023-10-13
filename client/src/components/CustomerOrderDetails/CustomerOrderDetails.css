@@ -6,14 +6,28 @@
     background-color: rgba(0, 0, 128, 0.80);
     color: gainsboro;
     border-radius: 5%;
-    margin: 2rem 0;
 }
 
 
 .OrderDetails-Header {
     /* background-color: seashell; */
-    box-shadow: 5px 5px 5px darkblue;
+    border-bottom: 2px solid snow;
 
+
+}
+
+.OrderDetails-BackToTable {
+    border: 1px dotted seashell;
+    width: 80px;
+    margin: 0.5rem auto;
+    padding: 0.5rem 0;
+    cursor: pointer;
+
+}
+.OrderDetails-BackToTable:hover {
+    background-color: antiquewhite;
+    color: navy;
+    transform: scale(1.2) translate(0, -5px);
 }
 
 
@@ -30,7 +44,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    box-shadow: 5px 5px 5px darkblue;
+    border-bottom: 2px solid snow;
     margin: 1rem 1rem;
 
 }
@@ -47,21 +61,29 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 5px 5px 5px darkblue;
+    border-bottom: 2px solid snow;
     margin: 1rem 1rem;
 
 }
 
 .OrderDetails-OrderItem {
-    box-shadow: 5px 5px 5px darkblue;
+    border-bottom: 2px solid snow;
     margin: 1rem 0;
     padding: 1rem;
 
 }
 
 .OrderDetails-TotalPrice {
-    box-shadow: 5px 5px 5px darkblue;
-    padding: 1.5rem;
+    border: 2px dotted silver;
+    padding: 1rem;
+}
+
+.OrderDetails-TotalPrice {
+    margin-left: 1rem;
+}
+
+.OrderDetails-PriceGroup {
+    margin-left: 2rem;
 }
 
 .WhiteFont {

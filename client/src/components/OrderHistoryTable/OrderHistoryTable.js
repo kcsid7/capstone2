@@ -9,7 +9,7 @@ import dateFormatter from "../../helpers/dateFormatter";
 import currencyFormatter from "../../helpers/currencyFormatter";
 
 
-function OrderHistoryTable({orders}) {
+function OrderHistoryTable({orders, orderClicked}) {
 
     return(
         <table className="OrderHistoryTable">
@@ -26,7 +26,7 @@ function OrderHistoryTable({orders}) {
                     orders.map(o => {
                         return (
                             <tr key={o.order_number} className="OrderHistoryTable-ItemRows">
-                                <td><Link to={`/order/${o.order_number}`}>{o.order_number}</Link></td>
+                                <td><span className="OrderHistoryTable-OrderNumber" onClick={orderClicked}>{o.order_number}</span></td>
                                 <td>{dateFormatter(o.order_date)}</td>
                                 <td>{o.name}</td>
                                 <td>{currencyFormatter(o.total_price)}</td>

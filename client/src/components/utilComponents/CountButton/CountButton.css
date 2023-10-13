@@ -16,6 +16,12 @@
     border-radius: 50%;
 }
 
+.CountButton-Increase:hover, .CountButton-Decrease:hover {
+    transform: translate(0, -5px);
+    cursor: pointer;
+    
+}
+
 .CountButton-Increase {
     border: none;
     background-color: rgb(31, 210, 31);

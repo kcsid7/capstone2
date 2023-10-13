@@ -15,7 +15,7 @@ const router = new express.Router();
 router.get("/", async (req, res, next) => {
     try {
         const restaurants = await Restaurant.getAllInfo();
-        return res.json(restaurants);
+        return res.status(200).json(restaurants);
     } catch (e) {
         return next(e);
     }
@@ -55,13 +55,14 @@ router.get("/:id", async(req, res, next) => {
     }
 })
 
+
 // Delete Restaurant From Database
 // DELETE: /:restaurant-id/delete
 router.delete("/:id/delete", checkOwner, async(req, res, next) => {
     try {
         const restaurant = await Restaurant.get(req.params.id);
         const removed = await restaurant.deleteRestaurant();
-        return res.json(removed);
+        return res.status(200).json(removed);
     } catch (e) {
         return next(e);
     }
@@ -69,12 +70,12 @@ router.delete("/:id/delete", checkOwner, async(req, res, next) => {
 
 
 // Update Restaurant
-// PATCH
-router.patch("/:id/update", async(req, res, next) => {
+// PATCH /:restaurant-id/update
+router.patch("/:id/update", checkOwner, async(req, res, next) => {
     try {
         const restaurant = await Restaurant.updateRestaurant(req.body, req.params.id)
         console.log(restaurant);
-        return res.json(restaurant)
+        return res.status(200).json(restaurant)
     } catch(e) {
         return next(e);
     }
@@ -84,8 +85,8 @@ router.patch("/:id/update", async(req, res, next) => {
 
 // Add a new menu item to the restaurant
 // POST: /:restaurant-id/menu/add
-// Req.body takes an object with {name, description, type, price}
-router.post("/:id/menu/add", async (req, res, next) => {
+// Req.body takes an object with {name, description, type, price, image}
+router.post("/:id/menu/add", checkOwner, async (req, res, next) => {
     try {
         const restaurant = await Restaurant.get(req.params.id);
         const newItem = await restaurant.createNewMenuItem(req.body);
@@ -98,11 +99,11 @@ router.post("/:id/menu/add", async (req, res, next) => {
 
 // Delete a menu item by ID
 // DELETE: /:restaurant-id/menu/:menuId/delete
-router.delete("/:id/menu/:menuId/delete", async (req, res, next) => {
+router.delete("/:id/menu/:menuId/delete", checkOwner, async (req, res, next) => {
     try {
         const menuItem = await MenuItem.getById(req.params.menuId);
         const removed = await menuItem.removeItem();
-        return res.json(removed);
+        return res.status(200).json(removed);
     } catch(e) {
         return next(e);
     }
@@ -111,7 +112,7 @@ router.delete("/:id/menu/:menuId/delete", async (req, res, next) => {
 
 // Update Menu Item
 // PATCH: /:restaurant-id/menu/:menuId/update
-router.patch("/:id/menu/:menuId/update", async (req, res, next) => {
+router.patch("/:id/menu/:menuId/update", checkOwner, async (req, res, next) => {
     try {
         const menuItem = await MenuItem.getById(req.params.menuId);
         menuItem.name = req.body.name;
@@ -120,7 +121,7 @@ router.patch("/:id/menu/:menuId/update", async (req, res, next) => {
         menuItem.price = req.body.price;
         menuItem.image = req.body.image;
         const newItem = await menuItem.updateItem();
-        return res.json(newItem);
+        return res.status(200).json(newItem);
     } catch(e) {
         return next(e);
     }
@@ -129,11 +130,11 @@ router.patch("/:id/menu/:menuId/update", async (req, res, next) => {
 
 // Get all restaurant orders
 // GET: /:restaurant-id/orders
-router.get("/:id/orders", async(req, res, next) => {
+router.get("/:id/orders", checkOwner, async(req, res, next) => {
     try {
         const restaurant = await Restaurant.get(req.params.id);
         const orders = await restaurant.getAllOrders();
-        return res.status(200).json({orders});
+        return res.status(200).json(orders);
 
     } catch(e) {
         return next(e)

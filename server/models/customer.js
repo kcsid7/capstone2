@@ -4,6 +4,9 @@ const db = require("../db");
 const { NotFoundError, ExpressError, UnauthorizedError } = require("../expressError");
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
 
+const { sqlPartialUpdate } = require("../helpers/sqlPartialUpdate.js");
+
+
 class Customer {
     constructor(firstName, lastName, username, email, phone) {
         this.firstName = firstName;
@@ -94,6 +97,8 @@ class Customer {
         )
         const customer = result.rows[0];
 
+        // console.log(customer);
+
         if (customer) {
             const passwordCheck = await bcrypt.compare(password, customer.password);
             if (passwordCheck === true) {
@@ -127,7 +132,37 @@ class Customer {
                 WHERE o.customer_id = $1`,
             [username]
         )
+
         return cusOrders.rows
+    }
+
+
+    // Update Customer
+    static async updateCustomer(data, customerId) {
+        try {
+            const {cols, values} = sqlPartialUpdate(data, {
+                firstName: "first_name",
+                lastName: "last_name"
+            });
+
+            const cusIdIdx = `$${values.length + 1}`;
+
+            const queryStr = `UPDATE customers
+                                SET ${cols}
+                                WHERE username=${cusIdIdx}
+                                RETURNING first_name, last_name, username,
+                                email, phone, address, city, state, zipcode`
+            const result = await db.query(queryStr, [...values, customerId]);
+            const customer = result.rows[0];
+
+            if (!customer) throw new NotFoundError();
+
+            return customer;
+
+        } catch(e) {
+            console.log(e);
+            throw new ExpressError(e.detail, e.code); 
+        }
     }
 
 

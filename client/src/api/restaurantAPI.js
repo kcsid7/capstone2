@@ -1,4 +1,6 @@
 import axios from "axios";
+// const axios = require("axios"); restaurantAPI
+
 
 const BASE = "http://localhost:5000";
 
@@ -18,10 +20,8 @@ class restaurantAPI {
     // Separate the responses
     static async getRestaurant(id, isOwner=false) {
         try {
-
             const restaurant = await axios.get(`${BASE}/res/${id}`);
             if (!isOwner) delete restaurant.data.owner;
-            console.log(restaurant.data);
             return restaurant.data;
         } catch(e) {
             throw(e);
@@ -48,7 +48,11 @@ class restaurantAPI {
     // Delete Restaurant
     static async deleteRestaurant(id) {
         try {
-            const removed = await axios.delete(`${BASE}/res/${id}/delete`);
+            const removed = await axios({
+                method: "DELETE",
+                url: `${BASE}/res/${id}/delete`,
+                headers: { authtoken: restaurantAPI.token}
+            });
             return removed.data;
         } catch(e) {
             throw(e);
@@ -71,13 +75,29 @@ class restaurantAPI {
         }
     }
 
+    // Get Restaurant Orders
+    static async getRestaurantOrders(resId) {
+        try {
+            const restaurantOrders = await axios({
+                method: "GET",
+                url: `${BASE}/res/${resId}/orders`,
+                headers: { authtoken: restaurantAPI.token}
+            })
+            return restaurantOrders.data;
+        } catch(e) {
+            console.log("restaurantAPI - restaurantOrders", e)
+            throw(e);
+        }
+    }
+
 
     // Adds a new menu item to the restaurant(id)
     static async addMenuItem(resId, menuItem) {
         const newMenuItem = await axios({
             method: 'POST',
             url: `${BASE}/res/${resId}/menu/add`,
-            data: menuItem
+            data: menuItem,
+            headers: { authtoken: restaurantAPI.token}
         })
         return newMenuItem.data;
     }
@@ -85,7 +105,11 @@ class restaurantAPI {
 
     // Deletes a menu item (using the item ID) and the restaurant id
     static async removeMenuItem(resId, menuItemId) {
-        const removedItem = await axios.delete(`${BASE}/res/${resId}/menu/${menuItemId}/delete`)
+        const removedItem = await axios({
+            method: 'DELETE',
+            url: `${BASE}/res/${resId}/menu/${menuItemId}/delete`,
+            headers: { authtoken: restaurantAPI.token }
+        })
         return removedItem.data;
     }
 
@@ -95,7 +119,8 @@ class restaurantAPI {
         const updatedItem = await axios({
             method: 'PATCH',
             url: `${BASE}/res/${resId}/menu/${menuItemId}/update`,
-            data: updatedMenuItem
+            data: updatedMenuItem,
+            headers: { authtoken: restaurantAPI.token }
         })
         return updatedItem.data; 
     }
@@ -108,13 +133,16 @@ class restaurantAPI {
         })
         return order.data;
     }
-
-
-
     
+    // Homepage - Search Form 
     // Query MenuItem From Search Term
-    static async queryMenuItem({name, maxPrice}) {
-        const menuItem = await axios.get(`${BASE}/menuitem?name=${name}`)
+    static async queryMenuItem({name}) {
+        try {
+            const menuItem = await axios.get(`${BASE}/menuitem?name=${name}`)
+            return menuItem.data;
+        } catch(e) {
+            console.log(e);
+        }
     }
 
 

@@ -23,7 +23,7 @@ import OwnerProfile from "./components/OwnerProfile/OwnerProfile";
 import Restaurant from "./components/Restaurants/Restaurant/Restaurant";
 import RestaurantEdit from "./components/Restaurants/RestaurantEdit/RestaurantEdit";
 import OrderConfirmPage from "./components/OrderConfirmPage/OrderConfirmPage.js";
-import OrderDetails from "./components/OrderDetails/OrderDetails";
+import CustomerOrderDetails from "./components/CustomerOrderDetails/CustomerOrderDetails";
 
 import AlertBanner from "./components/utilComponents/AlertBanner/AlertBanner";
 
@@ -36,6 +36,7 @@ import customerAPI from "./api/customerAPI";
 import ownerAPI from "./api/ownerAPI";
 import { formControlClasses } from "@mui/material";
 import FoodSearch from "./components/FoodSearch/FoodSearch";
+import RestaurantList from "./components/Restaurants/RestaurantList/RestaurantList";
 
 
 function App() {
@@ -62,19 +63,25 @@ function App() {
   const [isOwner, setIsOwner] = useLocalStorage(IS_OWNER);
 
 
-  console.log("App - isOwner", isOwner);
-
   useEffect(function getCurrentUser() {
     if (token && !currentUser) {
       try {
         console.log("App Running! - useEffect", jose.decodeJwt(token))
         const { username } = jose.decodeJwt(token);
+
         async function getCustomerInfo() {
           customerAPI.token = token;
           let res = await customerAPI.getCustomer(username);
           setCurrentUser(res);
         }
-        // getCustomerInfo();
+
+        async function getOwnerInfo() {
+          ownerAPI.token = token;
+          let res = await ownerAPI.getOwner(username);
+          setCurrentUser(res);
+        }
+        
+        isOwner ? getOwnerInfo() : getCustomerInfo();
 
       } catch (e) {
         setCurrentUser(null);
@@ -142,7 +149,7 @@ function App() {
       const { username, isOwner } = jose.decodeJwt(authToken);
       setLocalUser(username);
       setIsOwner(isOwner);
-      setError({message: `Login Successful! Welcome ${username}`, type: "success"})
+      setError({message: `Owner Login Successful! Welcome ${username}`, type: "success"})
       navigate(`owner/${username}`);
       return {
         token: authToken
@@ -189,7 +196,7 @@ function App() {
   return (
     <AppContext.Provider value= {{setError}}>
     <UserContext.Provider 
-      value = {{setCurrentUser, token, setToken, localUser, isOwner, jose}}
+      value = {{setCurrentUser, currentUser, token, setToken, localUser, isOwner}}
     >
       <div className="App container-xl">
         <Navbar logout={logout}/>
@@ -200,9 +207,10 @@ function App() {
           <Route path="/signup/owner" element={<SignupOwner signup={ownerSignup}/>} />
           <Route path="/login" element={<Login login={login} />} />
           <Route path="/login/owner" element={<LoginOwner login={ownerLogin} />} />
-          <Route path="/order/:oNum" element={<OrderDetails />} />
+          <Route path="/order/:oNum" element={<CustomerOrderDetails />} />
           <Route path="/customer/:username" element={<CustomerProfile />} />
           <Route path="/owner/:username" element={<OwnerProfile />} />
+          <Route path="/res" element={<RestaurantList />}/>
           <Route path="/res/:id" element={ isOwner ? <RestaurantEdit/> : <Restaurant /> } />
           {/* <Route path="/res/:id/edit" element={<RestaurantEdit />} /> */}
           <Route path="/res/:id/order/confirm" element={<OrderConfirmPage />} />

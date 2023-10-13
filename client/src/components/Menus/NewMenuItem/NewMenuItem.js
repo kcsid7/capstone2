@@ -5,17 +5,21 @@ import useFormData from "../../../hooks/useFormData";
 
 // Context
 import RestaurantContext from "../../../context/RestaurantContext";
+import UserContext from "../../../context/UserContext";
+import AppContext from "../../../context/AppContext";
 
 import restaurantAPI from "../../../api/restaurantAPI";
 
 import "./NewMenuItem.css"
 
 
-function NewMenuItem({setNavDefault}) {
+function NewMenuItem({setNavDefault, setNavType}) {
 
     const {id:resId} = useParams();
 
     const {restaurant, setRestaurant} = useContext(RestaurantContext);
+    const { token } = useContext(UserContext);
+    const { setError } = useContext(AppContext);
 
     // const [newType, toggleNewType] = useState(false);
 
@@ -31,6 +35,7 @@ function NewMenuItem({setNavDefault}) {
 
 
     async function addItemToRestaurant(rId, item) {
+        restaurantAPI.token = token;
         const {restaurant_id, ...newItem} = await restaurantAPI.addMenuItem(rId, item);
         return newItem;
     }
@@ -47,33 +52,12 @@ function NewMenuItem({setNavDefault}) {
             menu: [...resT.menu, newItem]
         }));
         setFormData(initialFormData);
+        setError({message: `New Item Added!`, type: "success"});
+        setNavType("show-restaurant-menu");
     }
-
-    // const generateOptionsHTML = () => {
-    //     const typeSet = new Set();
-    //     restaurant.menu.forEach(i => typeSet.add(i.type));
-    //     const typeArr = Array.from(typeSet).sort();
-    //     const optionsHTML = typeArr.map(i => <option key={i} value={i}>{i}</option>)
-    //     return (
-    //         <>
-    //             <option default value="">*-Select-*</option>
-    //             {optionsHTML}
-    //             <option value="generate-New-Type-">*-New-*</option>
-    //         </>
-    //     )
-    // }
-
-    // function checkForType() {
-    //     if (formData.type === "generate-New-Type-") {
-    //         // toggleNewType(s => !s);
-    //     }
-    // }
-
-    // checkForType();
 
     return (
         <div className="NewMenuItemForm">
-            <h2>New Menu Item Form</h2>
             <form className="NewMenuItemForm-Form" onSubmit={handleSubmit}>
                 <div className="NewMenuItemForm-Input">
                     <label htmlFor="name">Name</label>
@@ -83,21 +67,7 @@ function NewMenuItem({setNavDefault}) {
                     <label htmlFor="price">Price</label>
                     <input required type="text" id="price" name="price" value={formData.price} onChange={updateForm}/>
                 </div>
-                {/* {
-                    newType 
-                    ?
-                    <div className="NewMenuItemForm-Input">
-                        <label htmlFor="type">Type</label>
-                        <input required type="text" id="type" name="type" value={formData.type} onChange={updateForm}/>
-                    </div>
-                    :
-                    <div className="NewMenuItemForm-Input">
-                    <label htmlFor="type">Type</label>
-                    <select type="text" id="type" name="type" value={formData.type} onChange={updateForm}>
-                        {generateOptionsHTML()}
-                    </select>
-                    </div>
-                } */}
+
 
                 <div className="NewMenuItemForm-Input">
                     <label htmlFor="type">Type</label>

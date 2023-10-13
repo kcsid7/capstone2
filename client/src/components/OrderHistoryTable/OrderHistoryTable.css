@@ -1,10 +1,14 @@
 
 
 .OrderHistoryTable {
-    box-shadow: 5px 5px 5px navy;
+    box-shadow: 5px 5px 5px gray;
     margin: 1rem 0 5rem 0;
 }
 
+.OrderHistoryTable-OrderNumber {
+    cursor: pointer;
+    color: blue;
+}
 
 
 th {

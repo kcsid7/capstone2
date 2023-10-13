@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FoodSearchMenuItem snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MenuItem container row"
+  >
+    <div
+      class="MenuItem-Image col-12 col-sm-12 col-xl-2"
+    />
+    <div
+      class="MenuItem-Details col-12 col-sm-12 col-xl-8"
+    >
+      <h5>
+        <a
+          href="/res/undefined"
+        />
+      </h5>
+      <h5>
+         - $
+      </h5>
+      <p />
+    </div>
+    <div
+      class="MenuItem-Buttons col-12 col-sm-12 col-xl-2"
+    />
+  </div>
+</DocumentFragment>
+`;

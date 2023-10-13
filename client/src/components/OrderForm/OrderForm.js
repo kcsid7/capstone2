@@ -17,7 +17,7 @@ import { secretGuestCustomer } from "../../config";
 
 import "./OrderForm.css"
 
-function OrderForm({cart, total}) {
+function OrderForm({cart, total, tax, tip}) {
 
     const {id} = useParams();
     const navigate = useNavigate();
@@ -63,6 +63,8 @@ function OrderForm({cart, total}) {
             orderDate: curDate,
             orderTime: curTime,
             totalPrice: total,
+            tip: tip,
+            tax: tax,
             customerName: formData.name,
             customerId: localUser ? localUser : guestCustomer,
             customerEmail: formData.email,

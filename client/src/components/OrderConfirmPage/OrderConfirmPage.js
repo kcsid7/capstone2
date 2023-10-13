@@ -5,6 +5,7 @@ import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 
 import currencyFormatter from "../../helpers/currencyFormatter";
+import timeFormatter from "../../helpers/timeFormatter";
 
 import "./OrderConfirmPage.css";
  
@@ -19,8 +20,6 @@ function OrderConfirmPage() {
 
     const [orderDetails, setOrderDetails] = useState(null);
 
-    console.log(location);
-
     useEffect(() => {
         if (!location.state) {
             setError({message: "Unauthorized", type: "failure"});
@@ -28,32 +27,63 @@ function OrderConfirmPage() {
         } else {
             console.log("location.state not null")
             setOrderDetails(s => location.state.orderData)
+            console.log(location.state.orderData);
         }
     }, [])
 
     
     const orderConfirmHTML = () => {
+
+        function orderItemsHTML(item, key) {
+            return (
+                <div key={key} className="OrderConfirmPage-OrderDetails-OrderItem">
+                    <h5>{item.quantity} - {item.itemName} - {currencyFormatter(item.itemPrice)}</h5>
+                    {
+                        item.itemNotes ?
+                        <h6>{item.itemNotes}</h6> : 
+                        <></>
+                    }
+                </div>
+            )
+        }
+
+
+
         return (
         <div>
-            <Link to={`/res/${id}`}>Go Back to Restaurant</Link>
-            <div>
-                <h2>Order Details</h2>
-                <h3>Order Number: {orderDetails.orderNumber}</h3>
-                <h5>Order Date: {orderDetails.orderDate}</h5>
-                <h5>Order Time: {orderDetails.orderTime}</h5>
-                <ul style={{listStyle: "none"}}>
-                    <h3>Customer Details</h3>
-                    <li>Name: {orderDetails.customerName}</li> 
-                    <li>Email: {orderDetails.customerEmail}</li>
-                    <li>Phone: {orderDetails.customerPhone}</li>
-                    <li>Address: {orderDetails.customerAddress}</li>
-                </ul>
-                <ul style={{listStyle: "none"}}>
-                    {
-                        orderDetails.items.map((d, i) => <li key={i}>{d.quantity} - {d.itemName} - {d.itemPrice} | {d.itemNotes} </li>)
-                    }
-                </ul>
-                <h3>Total: {currencyFormatter(orderDetails.totalPrice)}</h3>
+            <div className="OrderConfirmPage">
+                <h1>Order Confirmed</h1>
+                <Link to={`/res/${id}`}>Go Back to Restaurant</Link>
+                <div className="OrderConfirmPage-Body">
+                    <div className="OrderConfirmPage-Body-Header">
+                        <h3>{orderDetails.orderNumber}</h3>
+                        <h5>{orderDetails.orderDate} | {timeFormatter(orderDetails.orderTime)}</h5>
+                    </div>
+                    <div className="OrderConfirmPage-Body-Customer">
+                        <h3>Name: {orderDetails.customerName}</h3> 
+                        <h6>Email: {orderDetails.customerEmail}</h6>
+                        <h6>Phone: {orderDetails.customerPhone}</h6>
+                        <h6>Address: {orderDetails.customerAddress}</h6>
+                    </div>
+                </div>
+
+                <div className="OrderConfirmPage-Body-Items">
+                    <ul style={{listStyle: "none"}}>
+                        {
+                            orderDetails.items.map((d, i) => orderItemsHTML(d, i))
+                        }
+                        <h5>{currencyFormatter(orderDetails.totalPrice - orderDetails.tax - orderDetails.tip)}</h5>
+                    </ul>
+
+                    <div className="d-flex OrderConfirmPage-Body-Items-PriceGroup">
+                        <div>
+                            <h5>Tax : {currencyFormatter(orderDetails.tax)}</h5>
+                            <h5>Tip : {currencyFormatter(orderDetails.tip)}</h5>
+                        </div>
+                        <h3 className="OrderConfirmPage-TotalPrice">{currencyFormatter(orderDetails.totalPrice)}</h3>
+                    </div>
+
+                </div>
             </div>
         </div>
         )

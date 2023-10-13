@@ -1,0 +1,31 @@
+
+.TipCalculator-Info {
+    margin: 0.7rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.TipCalculator-Info-Amount {
+    margin-left: 3rem;
+}
+
+
+.TipCalculator-CustomTip {
+    width: 3rem;
+}
+
+.TipCalculator-ButtonGroup button {
+    margin: 0 0.3rem 0.7rem;
+}
+
+.TipCalculator button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.TipCalculator input {
+    margin: 0 0.3rem;
+    text-align: center;
+}
+

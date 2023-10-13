@@ -8,15 +8,22 @@
     margin: 0.5rem 0 0 0;
 }
 
+.Order-Form-Btn:hover {
+    cursor: pointer;
+    transform: scale(1.1) translate(0, 5px);
+}
+
 .Order-Form-Field {
     margin: 0.3rem;
     display: flex;
     flex-direction: column;
+    
 }
 
 .Order-Form-Field input{
     width: 60%;
     align-self: center;
+    text-align: center;
 }
 
 .OrderForm {

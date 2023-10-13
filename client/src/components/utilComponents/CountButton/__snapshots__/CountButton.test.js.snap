@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Count Button snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="CountButton"
+  >
+    <button
+      class="CountButton-Increase CountButton-Button"
+    >
+      +
+    </button>
+    <input
+      class="CountButton-Count CountButton-Button"
+      readonly=""
+      style="background-color: white;"
+      type="text"
+      value=""
+    />
+    <button
+      class="CountButton-Decrease CountButton-Button"
+    >
+      -
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -6,6 +6,9 @@ import {Card, CardActions, CardContent, CardMedia, Button, Typography, TextField
 import useFormData from "../../../hooks/useFormData";
 
 import RestaurantContext from "../../../context/RestaurantContext";
+import UserContext from "../../../context/UserContext";
+import AppContext from "../../../context/AppContext";
+
 
 import EditMenuItemButton from "../../utilComponents/EditMenuItemButton/EditMenuItemButton";
 
@@ -28,6 +31,8 @@ function EditMenuItem(props) {
     }
 
     const {restaurant, setRestaurant} = useContext(RestaurantContext);
+    const { token } = useContext(UserContext);
+    const { setError } = useContext(AppContext);
 
     const [formData, updateForm] = useFormData(initialValues);
 
@@ -42,6 +47,7 @@ function EditMenuItem(props) {
 
     // Make a request to the API to delete the menu item then pass it down as a prop to the menu item buttons
     async function deleteMenuItem() {
+        restaurantAPI.token = token;
         const deletedItem = await restaurantAPI.removeMenuItem(resId, itemId);
         // Update restaurant state for the RestaurantEdit component
         const newRestState = {...restaurant, 
@@ -49,13 +55,16 @@ function EditMenuItem(props) {
                                 [...restaurant.menu
                                         .filter(i => i.id !== deletedItem.id)]}
         setRestaurant(s => newRestState);
+        setError({ message: "Menu Item Removed", type: "failure"})
     }
 
     async function updateMenuItem() {
         const updatedMenuItem = {
             ...formData,
             price: +formData.price
+
         }
+        restaurantAPI.token = token;
         const {restaurant_id, ...updatedItem} = await restaurantAPI.updateMenuItem(resId, itemId, updatedMenuItem);
         
         const tempMenu = restaurant.menu.filter(i => i.id !== updatedItem.id);
@@ -64,8 +73,8 @@ function EditMenuItem(props) {
         setRestaurant( st => {
             return {...st, menu: updatedMenu}
         })
-        
         toggleEdit();
+        setError({message: "Menu Item Updated!", type: "success"});
     }
 
 

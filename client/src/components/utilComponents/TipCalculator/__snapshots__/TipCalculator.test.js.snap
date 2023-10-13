@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Count Button snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="TipCalculator"
+  >
+    <div
+      class="TipCalculator-Info"
+    >
+      <h6>
+        Tip
+      </h6>
+      <h6
+        class="TipCalculator-Info-Amount"
+      >
+        $0.00
+      </h6>
+    </div>
+    <div
+      class="TipCalculator-ButtonGroup"
+    >
+      <button>
+        12%
+      </button>
+      <button>
+        15%
+      </button>
+      <button>
+        18%
+      </button>
+      <input
+        class="TipCalculator-CustomTip"
+        name="custom-tip"
+        value="0"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

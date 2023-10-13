@@ -74,29 +74,26 @@ class MenuItem {
     static async queryItem({name, maxPrice}) {
         try {
             
-            let searchQuery = `SELECT * FROM menu_items`
+            let searchQuery = `SELECT m.*, r.name AS restaurant_name FROM menu_items m JOIN restaurants r ON m.restaurant_id = r.id`
 
             let whereExp = [];
             let queryVal = [];
 
             if (name !== undefined) {
-                queryVal.push(name)
-                whereExp.push(`name ILIKE $${queryVal.length}`);
+                queryVal.push(`%${name}%`)
+                whereExp.push(`m.name ILIKE $${queryVal.length}`);
             }
 
             if (maxPrice !== undefined) {
                 queryVal.push(maxPrice)
-                whereExp.push(`price <= $${queryVal.length}`);
+                whereExp.push(`m.price <= $${queryVal.length}`);
             }
 
             if (whereExp.length > 0) {
                 searchQuery += " WHERE " + whereExp.join(" AND ");
             }
 
-            searchQuery += " ORDER BY name;";
-
-            console.log(searchQuery);
-            console.log(queryVal);
+            searchQuery += " ORDER BY m.name;";
 
             const result = await db.query(searchQuery, queryVal);
             return result.rows

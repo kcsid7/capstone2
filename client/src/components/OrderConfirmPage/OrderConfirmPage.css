@@ -1,0 +1,58 @@
+.OrderConfirmPage {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    background-color: navy;
+    color: gainsboro;
+    border-radius: 5%;
+}
+
+.OrderConfirmPage-Body-Header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 2px solid snow;
+    width: 70%;
+    margin: 0.5rem auto;
+}
+
+.OrderConfirmPage-Body {
+    justify-content: center;
+}
+
+
+.OrderConfirmPage-Body-Customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid snow;
+    width: 70%;
+    margin: 0.5rem auto;
+    padding: 1rem 0;
+}
+
+.OrderConfirmPage-Body-Items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0.5rem auto;
+}
+
+
+.OrderConfirmPage-OrderDetails-OrderItem {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-bottom: 2px solid snow;
+}
+
+.OrderConfirmPage-Body-Items-PriceGroup {
+    margin-left: 2rem;
+}
+
+.OrderConfirmPage-TotalPrice {
+    margin-left: 1rem;
+    border: 2px double silver;
+    padding: 1rem;
+}

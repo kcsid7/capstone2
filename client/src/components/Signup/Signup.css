@@ -8,14 +8,13 @@
 
 .Signup-Form-Field input {
     text-align: center;
-    width: 70%;
-    margin: 0 auto;
+    margin: 0 1rem;
     /* border: 2px solid blue; */
 
 }
 
 .Signup-Form {
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
 }
 

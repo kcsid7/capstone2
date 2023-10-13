@@ -1,0 +1,30 @@
+
+
+
+.RestaurantOrderTable-Table {
+    box-shadow: 5px 5px 5px navy;
+    margin: 1rem auto;
+}
+
+.OrderHistoryTable-OrderNumber {
+    cursor: pointer;
+    color: blue;
+}
+
+
+th {
+    border-bottom: 2px solid navy;
+    border-right: 3px solid navy;
+    padding: 0.8rem;
+}
+
+.RestaurantOrderTable-Table-ItemRows {
+    border-bottom: 3px solid navy;
+    margin: 1rem 0;
+}
+
+td {
+    border-right: 3px solid navy;
+    padding: 0.8rem;
+}
+

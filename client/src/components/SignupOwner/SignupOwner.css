@@ -2,20 +2,20 @@
     margin: 0.8rem auto;
     display: flex;
     flex-direction: column;
-    width: 65%;
+    width: 85%;
     /* border: 2px solid red; */
 }
 
 .OwnerSignup-Form-Field input {
     text-align: center;
-    width: 70%;
-    margin: 0 auto;
+    margin: 0 1rem;
     /* border: 2px solid blue; */
 
 }
 
 .OwnerSignup-Form {
-    margin: 1rem 0;
+    margin: 1rem auto;
+    width: 80%;
 }
 
 .OwnerSignup-Form-Field label {
@@ -30,7 +30,7 @@
     box-shadow: 10px 10px 15px seagreen;
     border-radius: 5%;
     color: white;
-    width: 40%;
+    width: 80%;
     margin: 0 auto;
 }
 

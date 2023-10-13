@@ -8,6 +8,11 @@
     border-radius: 0.5rem;
 }
 
+.EditMenuItemButton:hover {
+    transform: scale(1.15) translate(0, 5px);
+    cursor: pointer;
+}
+
 .Save-Button {
     background-color: rgb(2, 154, 2);
     color: white;

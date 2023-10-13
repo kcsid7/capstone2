@@ -53,12 +53,8 @@ function RestaurantEditForm({cancel}) {
                     zipcode: result.zipcode 
                 }
                 ))
-            // const result = await restaurantAPI.createNewRestaurant(resObj);
-            // setError({message: "Restaurant Added", type: "success"});
-            // navigate(`/res/${result.newRestaurant.id}`);
-            // resetForm(s => initialData);
+            setError({message: "Restaurant Updated", type: "success"});
         } catch(e) {
-            // resetForm(s => initialData);
             console.log(e);
             setError({message: e.response.data.message, type: "failure"});
 

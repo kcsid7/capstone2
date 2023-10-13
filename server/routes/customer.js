@@ -81,6 +81,19 @@ router.post("/login", async (req, res, next) => {
 })
 
 
+// PATCH customer (Update)
+// PATCH: /customer/:username
+router.patch("/:username", async (req, res, next) => {
+    try {
+        console.log("PATCH /customer/")
+        const updatedCustomer = await Customer.updateCustomer(req.body, req.params.username)
+        return res.status(200).json(updatedCustomer)
+    } catch (e) {
+        return next(e);
+    }
+})
+
+
 
 
 
