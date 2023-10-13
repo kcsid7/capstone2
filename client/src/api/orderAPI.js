@@ -13,7 +13,7 @@ class orderAPI {
             // console.log("orderAPI - Token", orderAPI.token);
             const result = await axios({
                 method: 'GET',
-                url: `${BASE}/order/${orderNumber}`,
+                url: `/order/${orderNumber}`,
                 headers: { authtoken: orderAPI.token } 
             })
             return result.data;
@@ -30,7 +30,7 @@ class orderAPI {
         try {
             const result = await axios({
                 method: 'PATCH',
-                url: `${BASE}/order/${orderNumber}`,
+                url: `/order/${orderNumber}`,
                 headers: { authtoken: orderAPI.token},
                 data: orderData
             });
@@ -46,7 +46,7 @@ class orderAPI {
         try {
             const result = await axios({
                 method: 'DELETE',
-                url: `${BASE}/order/${orderNumber}`,
+                url: `/order/${orderNumber}`,
                 headers: { authtoken: orderAPI.token}
             });
             return result;

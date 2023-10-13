@@ -13,7 +13,7 @@ class ownerAPI {
         try{
             const newOwner = await axios({
                 method: 'POST',
-                url: `${BASE}/owner/register`,
+                url: `/owner/register`,
                 data: newOwnerData
             })
             return newOwner.data;
@@ -29,7 +29,7 @@ class ownerAPI {
             // console.log("customerAPI - loginCustomer")
             const owner = await axios({
                 method: 'POST',
-                url: `${BASE}/owner/login`,
+                url: `/owner/login`,
                 data: ownerData
             })
             return owner.data;
@@ -45,7 +45,7 @@ class ownerAPI {
         try {
             const result = await axios({
                 method: 'GET',
-                url: `${BASE}/owner/${username}`,
+                url: `/owner/${username}`,
                 headers: { authtoken: ownerAPI.token } 
             })
             return result.data;
@@ -60,7 +60,7 @@ class ownerAPI {
         try {
             const result = await axios({
                 method: 'PATCH',
-                url: `${BASE}/owner/${username}`,
+                url: `/owner/${username}`,
                 headers: { authtoken: ownerAPI.token },
                 data: data 
             })

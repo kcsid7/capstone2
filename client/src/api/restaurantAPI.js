@@ -11,7 +11,7 @@ class restaurantAPI {
     
     // Returns a list of all the restaurants
     static async getAllRestaurants() {
-        const restaurants = await axios.get(`${BASE}/res`);
+        const restaurants = await axios.get(`/res`);
         return restaurants.data;
     }
 
@@ -20,7 +20,7 @@ class restaurantAPI {
     // Separate the responses
     static async getRestaurant(id, isOwner=false) {
         try {
-            const restaurant = await axios.get(`${BASE}/res/${id}`);
+            const restaurant = await axios.get(`/res/${id}`);
             if (!isOwner) delete restaurant.data.owner;
             return restaurant.data;
         } catch(e) {
@@ -33,7 +33,7 @@ class restaurantAPI {
         try {
             const newRestaurant = await axios({
                 method: "POST",
-                url: `${BASE}/res/new`,
+                url: `/res/new`,
                 data: resData,
                 headers: { authtoken: restaurantAPI.token}
             })
@@ -50,7 +50,7 @@ class restaurantAPI {
         try {
             const removed = await axios({
                 method: "DELETE",
-                url: `${BASE}/res/${id}/delete`,
+                url: `/res/${id}/delete`,
                 headers: { authtoken: restaurantAPI.token}
             });
             return removed.data;
@@ -64,7 +64,7 @@ class restaurantAPI {
         try {
             const updatedRestaurant = await axios({
                 method: "PATCH",
-                url: `${BASE}/res/${id}/update`,
+                url: `/res/${id}/update`,
                 data: resData,
                 headers: { authtoken: restaurantAPI.token}
             })
@@ -80,7 +80,7 @@ class restaurantAPI {
         try {
             const restaurantOrders = await axios({
                 method: "GET",
-                url: `${BASE}/res/${resId}/orders`,
+                url: `/res/${resId}/orders`,
                 headers: { authtoken: restaurantAPI.token}
             })
             return restaurantOrders.data;
@@ -95,7 +95,7 @@ class restaurantAPI {
     static async addMenuItem(resId, menuItem) {
         const newMenuItem = await axios({
             method: 'POST',
-            url: `${BASE}/res/${resId}/menu/add`,
+            url: `/res/${resId}/menu/add`,
             data: menuItem,
             headers: { authtoken: restaurantAPI.token}
         })
@@ -107,7 +107,7 @@ class restaurantAPI {
     static async removeMenuItem(resId, menuItemId) {
         const removedItem = await axios({
             method: 'DELETE',
-            url: `${BASE}/res/${resId}/menu/${menuItemId}/delete`,
+            url: `/res/${resId}/menu/${menuItemId}/delete`,
             headers: { authtoken: restaurantAPI.token }
         })
         return removedItem.data;
@@ -118,7 +118,7 @@ class restaurantAPI {
     static async updateMenuItem(resId, menuItemId, updatedMenuItem) {
         const updatedItem = await axios({
             method: 'PATCH',
-            url: `${BASE}/res/${resId}/menu/${menuItemId}/update`,
+            url: `/res/${resId}/menu/${menuItemId}/update`,
             data: updatedMenuItem,
             headers: { authtoken: restaurantAPI.token }
         })
@@ -128,7 +128,7 @@ class restaurantAPI {
     static async placeOrder(resId, orderData) {
         const order = await axios({
             method: 'POST',
-            url: `${BASE}/res/${resId}/order`,
+            url: `/res/${resId}/order`,
             data: orderData
         })
         return order.data;
@@ -138,7 +138,7 @@ class restaurantAPI {
     // Query MenuItem From Search Term
     static async queryMenuItem({name}) {
         try {
-            const menuItem = await axios.get(`${BASE}/menuitem?name=${name}`)
+            const menuItem = await axios.get(`/menuitem?name=${name}`)
             return menuItem.data;
         } catch(e) {
             console.log(e);

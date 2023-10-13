@@ -10,7 +10,7 @@ class customerAPI {
 
     static async getAllCustomers() {
         try {
-            const result = await axios.get(`${BASE}/customer/all`);
+            const result = await axios.get(`/customer/all`);
             return result.data;
         } catch (e) {
 
@@ -23,7 +23,7 @@ class customerAPI {
 
             const result = await axios({
                 method: 'GET',
-                url: `${BASE}/customer/${username}`,
+                url: `/customer/${username}`,
                 headers: { authtoken: customerAPI.token } 
             })
             return result.data;
@@ -36,7 +36,7 @@ class customerAPI {
         try{
             const newCustomer = await axios({
                 method: 'POST',
-                url: `${BASE}/customer/register`,
+                url: `/customer/register`,
                 data: newCustomerData
             })
             return newCustomer.data;
@@ -51,7 +51,7 @@ class customerAPI {
             // console.log("customerAPI - loginCustomer")
             const customer = await axios({
                 method: 'POST',
-                url: `${BASE}/customer/login`,
+                url: `/customer/login`,
                 data: customerData
             })
             return customer.data;
@@ -66,7 +66,7 @@ class customerAPI {
         try {
             const result = await axios({
                 method: 'GET',
-                url: `${BASE}/customer/${username}/orders`,
+                url: `/customer/${username}/orders`,
                 headers: { authtoken: customerAPI.token } 
             })
             return result.data;
@@ -82,7 +82,7 @@ class customerAPI {
         try {
             const result = await axios({
                 method: 'PATCH',
-                url: `${BASE}/customer/${username}`,
+                url: `/customer/${username}`,
                 headers: { authtoken: customerAPI.token },
                 data: data 
             })
