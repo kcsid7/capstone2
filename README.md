@@ -14,60 +14,70 @@ Sellers can create their profile, manange one or more stores that provides diffe
 Buyers can search through a centralized database for
 
 ## Getting Started
-
 ### Dependencies
 
 * npm: 9.6.2 (Used during development)
 * node: 18.14.2 (Used during development)
 * postgreSQL
-* REACT
+* React
 
 ### Installing
 
 * (Disclaimer: Later versions of npm and node may cause issues) 
 * Install npm v. 9.6.2 (Used during development)
 * Install node v. 18.14.2 (Used during development)
-* Any modifications needed to be made to files/folders
+* Clone the repository, ensure the package.json file is in place, and install dependencies
+```
+npm install
+```
+* The application uses React for the frontend. Install the dependencies for the client package.json as well. 
+```
+cd client && npm install
+```
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Ensure all the dependencies have been properly installed
+* Start the server (dev)
 ```
-code blocks for commands
+npm start
+```
+* The backend server will be started on Port 5000 (Default). 
+* In development, the backend will only serve JSON as an API. Therefore, it may be necessary to start the React client as well.
+```
+cd client && npm start
+```
+* During production, the backend will serve the built react file. 
+  
+
+## Errors
+
+The backend API is designed with various errors. There is full authentication and authorization in place for user profile and user privilages.
+```
+// 401 UNAUTHORIZED
+class UnauthorizedError extends ExpressError {
+    constructor(message="Unauthorized") {
+        super(message, 401);
+    }
+}
 ```
 
-## Help
-
-Any advise for common problems or issues.
 ```
-command to run if program contains helper info
+// 400 BAD REQUEST
+class BadRequestError extends ExpressError {
+    constructor(message="Bad Request") {
+        super(message, 400);
+    }
+}
 ```
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+sKc
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
-## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
