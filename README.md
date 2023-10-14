@@ -22,6 +22,7 @@ Buyers can search through a centralized database for
 * node: 18.14.2 (Used during development)
 * postgreSQL
 * React
+* Bootstrap
 
 ### Installing
 
@@ -49,7 +50,7 @@ npm start
 ```
 cd client && npm start
 ```
-* During production, the backend will serve the built react file. 
+* During production, the backend will serve the built react file
   
 
 ## Errors
