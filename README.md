@@ -4,7 +4,10 @@ Application for customers to find and order food and for restaurant owners to cr
 
 ## Description
 
-Res-Manager is designed as an online storefront for restaurants to show and get customer orders. The centralized food item database makes it easy for the customer to search for and pick out their favorite food items 
+Res-Manager is designed as an online storefront for restaurants to show and get customer orders. 
+The centralized food item database makes it easy for the customer to search for and pick out their favorite food items from their favorite restaurants.
+The customers have the ability to track their past order history in their own unique profile.
+The restaurant owners also have a unique profile where they are able to manage one or multiple restaurants, curate the restaurant menu, and track customer orders for each of their restaurants.
 
 Although the application is designed for restaurants, the underlying functionality can be utilized for other types of store fronts. 
 Sellers can create their profile, manange one or more stores that provides different inventories. 
