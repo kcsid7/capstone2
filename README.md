@@ -11,6 +11,8 @@ The centralized food item database makes it easy for the customer to search for 
 The customers have the ability to track their past order history in their own unique profile.
 The restaurant owners also have a unique profile where they are able to manage one or multiple restaurants, curate the restaurant menu, and track customer orders for each of their restaurants.
 
+The application uses a custom backend to store all user, inventory, and order information. 
+
 Although the application is designed for restaurants, the underlying functionality can be utilized for other types of store fronts. 
 Sellers can create their profile, manange one or more stores that provides different inventories. 
 Buyers can search through a centralized database for
@@ -50,7 +52,7 @@ npm start
 ```
 cd client && npm start
 ```
-* During production, the backend will serve the built react file
+* During production, the backend will serve the built react file. 
   
 
 ## Errors
