@@ -17,12 +17,16 @@ Buyers can search through a centralized database for
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* npm: 9.6.2 (Used during development)
+* node: 18.14.2 (Used during development)
+* postgreSQL
+* REACT
 
 ### Installing
 
-* How/where to download your program
+* (Disclaimer: Later versions of npm and node may cause issues) 
+* Install npm v. 9.6.2 (Used during development)
+* Install node v. 18.14.2 (Used during development)
 * Any modifications needed to be made to files/folders
 
 ### Executing program
