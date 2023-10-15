@@ -52,7 +52,12 @@ npm start
 ```
 cd client && npm start
 ```
-* During production, the backend will serve the built react file. 
+* During production, the backend will serve the built react file.
+```
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "client/build")))
+}
+```
   
 
 ## Errors
