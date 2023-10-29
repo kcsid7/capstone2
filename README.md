@@ -2,8 +2,6 @@
 
 Application for customers to find and order food and for restaurant owners to create an online store for their restaurants.
 
-## [Live Site](https://res-mngr-94e5e72ba7c6.herokuapp.com/)
-
 ## Description
 
 Res-Manager is designed as an online storefront for restaurants to show and get customer orders. 
